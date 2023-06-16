@@ -67,3 +67,48 @@ int main() {
 
     return 0;
 }
+
+
+/*
+Personal Information:
+
+Full Name
+Date of Birth
+Gender
+Nationality
+Address
+Contact Information (Phone Number, Email)
+Identification Information:
+
+Student ID Number
+Social Security Number (or equivalent identification number)
+Passport or ID Card Number
+Academic Information:
+
+School/University Name
+Grade/Level/Year of Study
+Major/Program of Study
+Course Schedule/Subjects
+Previous Education History (Schools attended, graduation dates, etc.)
+Emergency Contact Information:
+
+Name of Emergency Contact
+Relationship to the Student
+Phone Number of Emergency Contact
+Health and Medical Information:
+
+Medical Conditions (allergies, chronic illnesses, etc.)
+Emergency Medical Contact Information
+Health Insurance Details
+Parent/Guardian Information:
+
+Parent/Guardian Names
+Relationship to the Student
+Contact Information (Phone Numbers, Email)
+Parent/Guardian Occupation
+Additional Information:
+
+Extracurricular Activities
+Interests/Hobbies
+Language Proficiency
+Special Needs or Accommodation Requirements*/

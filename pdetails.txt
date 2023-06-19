@@ -1,5 +1,0 @@
-RegNo     Name          Gender  Nationality  Address   Phone
-5158, Michael Odhiambo, M, kenyan, Umoja Innercore, 799013845
-1263, Everet Kasimbu, M, kenyan, Umoja Sango, 728558796
-3422, Mike odhiambo, F, Uganda, Kayole, -617097369
-4446, Ochieng, F, kali, Umo, 799018762

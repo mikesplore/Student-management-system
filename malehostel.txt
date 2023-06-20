@@ -1,1 +1,2 @@
-20, mike, available
+1, Mike, allocated
+2, Obote, available

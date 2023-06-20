@@ -1,0 +1,5 @@
+Student name:  Mike
+Student regNo: 1
+Hostel room number: 1
+Hostel name: Mike, 
+

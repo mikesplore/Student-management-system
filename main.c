@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "functions.h"
+#include "admission.h"
+#include "hostels.h"
 
 int main() {
     int option, id, roomid;

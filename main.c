@@ -81,16 +81,12 @@ int main() {
                 switch (option) {
                     case 1:
                         printf("---------------------------------------------\n");
-                        printf("Enter student registration number: ");
-                        scanf("%d", &id);
                         searchmalestudent(id);
                         printf("---------------------------------------------\n");
                         break;
 
                     case 2:
                         printf("---------------------------------------------\n");
-                        printf("Enter student registration number: ");
-                        scanf("%d", &id);
                         searchfemalestudent(id);
                         printf("---------------------------------------------\n");
                         break;
@@ -184,16 +180,12 @@ int main() {
                 switch (option) {
                     case 1:
                         printf("---------------------------------------------\n");
-                        printf("Enter student registration number: ");
-                        scanf("%d", &id);
                         deleteMaleStudentRecord(id);
                         printf("---------------------------------------------\n");
                         break;
 
                     case 2:
-                        printf("---------------------------------------------\n");
-                        printf("Enter student registration number: ");
-                        scanf("%d", &id);
+                        printf("---------------------------------------------\n");                     
                         deleteFemaleStudentRecord(id);
                         printf("---------------------------------------------\n");
                         break;

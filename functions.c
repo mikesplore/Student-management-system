@@ -1,14 +1,15 @@
 #include <stdio.h>
-#include <time.h>
 #include <string.h>
 #include <stdlib.h>
 
 int randomNumber() {
-    return rand() % 9000 + 1000;
+    static int admission_counter = 1;
+    printf("Admission Number: %03d\n", admission_counter++);
 }
 
 int randomNumber1(){
-    return rand()%1000+1;
+    static int admission_counter = 1;
+    printf("Admission Number: %d\n", admission_counter++);
 }
 struct Student {
     int regNo;
@@ -50,7 +51,7 @@ void maledetails() {
 
     FILE* malefile = fopen("maledetails.txt", "a");
     if (malefile != NULL) {
-        fprintf(malefile, "%d, %s, %s, %s, %d\n", student.regNo, student.name,student.nationality, student.address, student.phone);
+        fprintf(malefile, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob,student.nationality, student.address, student.phone);
         fclose(malefile);
         printf("\n\nDetails captured successfully!\nYour registration number is %d\n", student.regNo);
     } else {
@@ -76,12 +77,12 @@ void femaledetails() {
 
     printf("Enter your mobile phone number: ");
     scanf("%d", &student.phone);
-
+    
     student.regNo = randomNumber();
 
     FILE* femalefile = fopen("femaledetails.txt", "a");
     if (femalefile != NULL) {
-        fprintf(femalefile, "%d, %s, %s, %s, %d\n", student.regNo, student.name, student.nationality, student.address, student.phone);
+        fprintf(femalefile, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob,student.nationality, student.address, student.phone);
         fclose(femalefile);
         printf("\n\nDetails captured successfully!\nYour registration number is %d\n", student.regNo);
     } else {
@@ -252,7 +253,7 @@ void deleteFemaleStudentRecord(int id) {
 void registermaleHostel(){
     struct Hostel hostel;
     char availability[]="available";
-    srand(time(NULL));
+    
     hostel.roomNo=randomNumber1();
     printf("The new hostel number is: %d\n",hostel.roomNo);
     printf("Enter hostel name: ");
@@ -274,7 +275,6 @@ void registermaleHostel(){
 void registerfemaleHostel(){
     struct Hostel hostel;
     char availability[]="available";
-    srand(time(NULL));
     hostel.roomNo=randomNumber1();
     printf("The new hostel number is: %d\n",hostel.roomNo);
     printf("Enter hostel name: ");
@@ -324,6 +324,23 @@ void viewfemalehostels() {
 //function for allocating hostel to students
 //allocation of male hostel
 
+int checkAllocation(int regNo, int roomNo) {
+    FILE* allocfile = fopen("allocatedmalerooms.txt", "r");
+    if (allocfile != NULL) {
+        char line[256];
+        while (fgets(line, sizeof(line), allocfile)) {
+            int fileRegNo, fileRoomNo;
+            sscanf(line, "Student regNo: %d\nHostel room number: %d", &fileRegNo, &fileRoomNo);
+            if (fileRegNo == regNo || fileRoomNo == roomNo) {
+                fclose(allocfile);
+                return 1;  // Room or student already allocated
+            }
+        }
+        fclose(allocfile);
+    }
+    return 0;  // Room and student not allocated
+}
+
 void allocatemalehostel() {
     struct Student student;
     struct Hostel hostel;
@@ -332,6 +349,12 @@ void allocatemalehostel() {
     int id, roomid;
     printf("Enter student registration number: ");
     scanf("%d", &id);
+
+    // Check if student has already booked a room
+    if (checkAllocation(id, -1)) {
+        printf("Student with ID %d has already booked a room\n", id);
+        return;
+    }
 
     FILE* studentfile = fopen("maledetails.txt", "r");
     if (studentfile != NULL) {
@@ -357,6 +380,12 @@ void allocatemalehostel() {
 
     printf("Enter room number: ");
     scanf("%d", &roomid);
+
+    // Check if room is already allocated
+    if (checkAllocation(-1, roomid)) {
+        printf("Room with ID %d is already allocated\n", roomid);
+        return;
+    }
 
     FILE* malehostelfile = fopen("malehostel.txt", "r+");
     if (malehostelfile != NULL) {

@@ -16,5 +16,8 @@ void allocatemalehostel();
 void allocatefemalehostel();
 void allocatedmalestudents();
 void allocatedfemalestudents();
+void allocatedmalerooms();
+void allocatedmalerooms();
+void allocatedfemalerooms(); 
 
 #endif  // HOSTELS_H

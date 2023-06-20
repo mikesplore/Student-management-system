@@ -311,6 +311,63 @@ void allocatedfemalestudents() {
         printf("Error opening the file\n");
     }
 }
+//check allocated hostels
+//allocated male hostels
+void allocatedmalerooms() {
+    struct Hostel hostel;
+    char availability[20] = "allocated";
 
+    FILE* file = fopen("malehostel.txt", "r");
 
+    if (file != NULL) {
+        char line[256];
+        int found = 0;
 
+        while (fgets(line, sizeof(line), file)) {
+            sscanf(line, "%d, %[^,], %s", &hostel.roomNo, hostel.hostelName, availability);
+
+            if (strcmp(availability, "allocated") == 0) {
+                printf("%d, %s\n", hostel.roomNo, hostel.hostelName);
+                found = 1;
+            }
+        }
+
+        fclose(file);
+
+        if (!found) {
+            printf("No rooms are available for allocation\n");
+        }
+    } else {
+        printf("Error opening the male hostel file\n");
+    }
+}
+
+//allocated female hostels
+void allocatedfemalerooms() {
+    struct Hostel hostel;
+    char availability[20] = "allocated";
+
+    FILE* file = fopen("femalehostel.txt", "r");
+
+    if (file != NULL) {
+        char line[256];
+        int found = 0;
+
+        while (fgets(line, sizeof(line), file)) {
+            sscanf(line, "%d, %[^,], %s", &hostel.roomNo, hostel.hostelName, availability);
+
+            if (strcmp(availability, "allocated") == 0) {
+                printf("%d, %s\n", hostel.roomNo, hostel.hostelName);
+                found = 1;
+            }
+        }
+
+        fclose(file);
+
+        if (!found) {
+            printf("No rooms allocated for now.\n");
+        }
+    } else {
+        printf("Error opening the male hostel file\n");
+    }
+}

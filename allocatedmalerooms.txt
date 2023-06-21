@@ -1,25 +1,2 @@
 Student name:  Michael Odhiambo
 Student regNo: 1
-Hostel room number: 2
-Hostel name: Bamkele, 
-
-Student name:  Everet Kasimbu
-Student regNo: 2
-Hostel room number: 1
-Hostel name: Obote, 
-
-Student name:  oo
-Student regNo: 3
-Hostel room number: 3
-Hostel name: kiki, 
-
-Student name:  oo
-Student regNo: 4
-Hostel room number: 3
-Hostel name: kiki, 
-
-Student name:  Ann james
-Student regNo: 5
-Hostel room number: 3
-Hostel name: kiki, 
-

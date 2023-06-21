@@ -5,6 +5,7 @@ struct Hostel {
     int roomNo;
     char hostelName[50];
     int bedNo;
+    
 };
 
 void registermaleHostel();
@@ -19,5 +20,7 @@ void allocatedfemalestudents();
 void allocatedmalerooms();
 void allocatedmalerooms();
 void allocatedfemalerooms(); 
+void vacatemalehostel();
+void vacatefemalehostel();
 
 #endif  // HOSTELS_H

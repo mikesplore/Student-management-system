@@ -1,5 +1,2 @@
 Student name:  Ann james
 Student regNo: 6
-Hostel room number: 5
-Hostel name: bibi, 
-

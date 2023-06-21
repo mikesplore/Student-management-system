@@ -5,6 +5,8 @@
 #include "hostels.h"
 #include "admission.h"
 
+char availability[20]="available";
+
 //generating hostel number
 int readNumberFromFile1() {
     int number = 1;  // Default value if the file doesn't exist
@@ -38,7 +40,6 @@ int generateIncreasingNumber1() {
 //Register male hostels
 void registermaleHostel(){
     struct Hostel hostel;
-    char availability[]="available";
     srand(time(NULL));
     hostel.roomNo = readNumberFromFile1();
     writeNumberToFile1(hostel.roomNo + 1);
@@ -62,9 +63,8 @@ void registermaleHostel(){
 //register female hostel
 void registerfemaleHostel(){
     struct Hostel hostel;
-    char availability[]="available";
     srand(time(NULL));
-
+    
     hostel.roomNo = readNumberFromFile1();
     writeNumberToFile1(hostel.roomNo + 1);
 
@@ -136,7 +136,7 @@ int checkAllocation(int regNo, int roomNo) {
 void allocatemalehostel() {
     struct Student student;
     struct Hostel hostel;
-    char availability[20] = "available";
+    
 
     int id, roomid;
     printf("Enter student registration number: ");
@@ -218,7 +218,7 @@ void allocatemalehostel() {
 void allocatefemalehostel() {
     struct Student student;
     struct Hostel hostel;
-    char availability[20] = "available";
+    
 
     int id, roomid;
     printf("Enter student registration number: ");
@@ -315,9 +315,9 @@ void allocatedfemalestudents() {
 //allocated male hostels
 void allocatedmalerooms() {
     struct Hostel hostel;
-    char availability[20] = "allocated";
+    
 
-    FILE* file = fopen("malehostel.txt", "r");
+    FILE* file = fopen("fmalehostel.txt", "r");
 
     if (file != NULL) {
         char line[256];
@@ -335,7 +335,7 @@ void allocatedmalerooms() {
         fclose(file);
 
         if (!found) {
-            printf("No rooms are available for allocation\n");
+            printf("No rooms are allocated for now.\n");
         }
     } else {
         printf("Error opening the male hostel file\n");
@@ -345,7 +345,7 @@ void allocatedmalerooms() {
 //allocated female hostels
 void allocatedfemalerooms() {
     struct Hostel hostel;
-    char availability[20] = "allocated";
+    
 
     FILE* file = fopen("femalehostel.txt", "r");
 
@@ -365,9 +365,147 @@ void allocatedfemalerooms() {
         fclose(file);
 
         if (!found) {
-            printf("No rooms allocated for now.\n");
+            printf("No rooms are allocated for now.\n");
         }
     } else {
         printf("Error opening the male hostel file\n");
+    }
+}
+
+//vacate male hostel
+void vacatemalehostel() {
+    struct Hostel hostel;
+    int roomid;
+    printf("Enter room number to vacate: ");
+    scanf("%d", &roomid);
+
+    // Update room availability in malehostel.txt
+    FILE* malehostelfile = fopen("malehostel.txt", "r+");
+    if (malehostelfile != NULL) {
+        char line[256];
+        int found = 0;
+        while (fgets(line, sizeof(line), malehostelfile)) {
+            sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+            if (hostel.roomNo == roomid && strcmp(availability, "allocated") == 0) {
+                fseek(malehostelfile, -strlen(line), SEEK_CUR);
+                fprintf(malehostelfile, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, "available");
+                found = 1;
+                break;
+            }
+        }
+        fclose(malehostelfile);
+
+        if (!found) {
+            printf("Room with ID %d not found or not allocated\n", roomid);
+            return;
+        }
+    } else {
+        printf("Error opening the room details file\n");
+        return;
+    }
+
+    // Delete allocation records from allocatedmalerooms.txt
+    FILE* allocfile = fopen("allocatedmalerooms.txt", "r");
+    if (allocfile != NULL) {
+        FILE* temp = fopen("temp.txt", "w");  // Temporary file to write updated records
+        if (temp != NULL) {
+            char line[256];
+            int found = 0;
+            while (fgets(line, sizeof(line), allocfile)) {
+                int tempRoomNo;
+                sscanf(line, "Hostel room number: %d", &tempRoomNo);
+                if (tempRoomNo != roomid) {
+                    fputs(line, temp);  // Write the record to temporary file
+                } else {
+                    found = 1;
+                }
+            }
+            fclose(temp);
+            fclose(allocfile);
+
+            if (!found) {
+                printf("No allocation records found for room with ID %d\n", roomid);
+                remove("temp.txt");  // Delete the temporary file
+                return;
+            }
+
+            remove("allocatedmalerooms.txt");        // Delete the original allocation file
+            rename("temp.txt", "allocatedmalerooms.txt");  // Rename the temporary file to the original filename
+            printf("Room vacation successful\n");
+        } else {
+            fclose(allocfile);
+            printf("Error creating temporary file\n");
+        }
+    } else {
+        printf("Error opening the allocated room details file\n");
+    }
+}
+
+//vacate female hostel
+void vacatefemalehostel() {
+    struct Hostel hostel;
+    int roomid;
+    printf("Enter room number to vacate: ");
+    scanf("%d", &roomid);
+
+    // Update room availability in femalehostel.txt
+    FILE* malehostelfile = fopen("femalehostel.txt", "r+");
+    if (malehostelfile != NULL) {
+        char line[256];
+        int found = 0;
+        while (fgets(line, sizeof(line), malehostelfile)) {
+            sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+            if (hostel.roomNo == roomid && strcmp(availability, "allocated") == 0) {
+                fseek(malehostelfile, -strlen(line), SEEK_CUR);
+                fprintf(malehostelfile, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, "available");
+                found = 1;
+                break;
+            }
+        }
+        fclose(malehostelfile);
+
+        if (!found) {
+            printf("Room with ID %d not found or not allocated\n", roomid);
+            return;
+        }
+    } else {
+        printf("Error opening the room details file\n");
+        return;
+    }
+
+    // Delete allocation records from allocatedfemalerooms.txt
+    FILE* allocfile = fopen("allocatedfemalerooms.txt", "r");
+    if (allocfile != NULL) {
+        FILE* temp = fopen("temp.txt", "w");  // Temporary file to write updated records
+        if (temp != NULL) {
+            char line[256];
+            int found = 0;
+            while (fgets(line, sizeof(line), allocfile)) {
+                int tempRoomNo;
+                sscanf(line, "Hostel room number: %d", &tempRoomNo);
+                if (tempRoomNo != roomid) {
+                    fputs(line, temp);  // Write the record to temporary file
+                } else {
+                    found = 1;
+                }
+            }
+            fclose(temp);
+            fclose(allocfile);
+
+            if (!found) {
+                printf("No allocation records found for room with ID %d\n", roomid);
+                remove("temp.txt");  // Delete the temporary file
+                return;
+            }
+
+            remove("allocatedfemalerooms.txt");        // Delete the original allocation file
+            rename("temp.txt", "allocatedfemalerooms.txt");  // Rename the temporary file to the original filename
+            printf("Room vacation successful\n");
+        } else {
+            fclose(allocfile);
+            printf("Error creating temporary file\n");
+        }
+    } else {
+        printf("Error opening the allocated room details file\n");
     }
 }

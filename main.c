@@ -17,7 +17,8 @@ int main() {
         printf("7. Delete student record\n");
         printf("8. View allocated students\n");
         printf("9. View allocated rooms\n");
-        printf("10. Exit\n");
+        printf("10. Vacate hostels\n");
+        printf("11. Exit\n");
         printf("Choose an option: ");
         scanf("%d", &option);
 
@@ -296,6 +297,36 @@ int main() {
                 break;
 
             case 10:
+                printf("\nVACATE HOSTELS\n");
+                printf("1. Vacate male hostels\n");
+                printf("2. Vacate female hostels\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("---------------------------------------------\n");
+                        vacatemalehostel();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("---------------------------------------------\n");
+                        vacatefemalehostel();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+
+
+            case 11:
                 printf("Are you sure you want to exit?\n");
                 printf("1. Yes\n");
                 printf("2. No\n");
@@ -314,6 +345,8 @@ int main() {
                         printf("Invalid option\n");
                 }
                 break;
+
+                           
 
             default:
                 printf("Invalid selection.\n");

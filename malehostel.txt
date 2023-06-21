@@ -1,7 +1,4 @@
 3, kiki allocated
-, available
-lable
 3, Jojo available
-
 8, Joh, available
 9, kim, available

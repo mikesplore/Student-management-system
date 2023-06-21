@@ -20,5 +20,5 @@ STUDENTS MANAGEMENT SYSTEM
 4. library management system 
 5. course application
 
-I'm looking for a collaborator. Wa.me 👇                                            
+I'm looking for a collaborator. Whatsapp me 👇                                            
 https://api.whatsapp.com/send/?phone=%2B254799013845&text=Hey+Mike&type=phone_number&app_absent=0 

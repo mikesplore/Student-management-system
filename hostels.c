@@ -99,7 +99,7 @@ void viewmalehostels() {
     }
 }
 
-//view female hostels
+//view available female hostels
 void viewfemalehostels() {
     FILE* file = fopen("femalehostel.txt", "r");
     if (file != NULL) {

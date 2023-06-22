@@ -1,4 +1,3 @@
 1, Michael Odhiambo, 2002, Kenyan, 2020, 79901
 2, Everet Kasimbu, 2000, Kenyan, Macha, 19918
-3, oo, 20, k, t, 0
-5, Ann james, 2002, ken, kem, 9837
+7, Marcello Kamau, 2020, Kenyan, Umoja, 799013845

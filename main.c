@@ -1,28 +1,34 @@
 #include <stdio.h>
 #include "admission.h"
 #include "hostels.h"
+#include "library.h"
+
+ int option, id, roomid;
 
 int main() {
-    int option, id, roomid;
 
-    do {
-        printf("\n\nSTUDENT MANAGEMENT SYSTEM\n\n");
-        printf("Choose one of the following\n");
-        printf("1. Register new Student\n");
-        printf("2. View Student Details\n");
-        printf("3. Search Student\n");
-        printf("4. Register hostel\n");
-        printf("5. View hostels\n");
-        printf("6. Allocate hostels\n");
-        printf("7. Delete student record\n");
-        printf("8. View allocated students\n");
-        printf("9. View allocated rooms\n");
-        printf("10. Vacate hostels\n");
-        printf("11. Exit\n");
-        printf("Choose an option: ");
-        scanf("%d", &option);
+    printf("\n\nSTUDENT MANAGEMENT SYSTEM\n\n");
+    do{
+        printf("\nChoose one of the following.\n\n");
+        printf("1. Student Management\n");
+        printf("2. Hostel Management\n");
+        printf("3. Course Application\n");
+        printf("4. Library Managenent\n");
+        printf("5. Exit\n");
+        printf("Enter your option: ");
+        scanf("%d",&option);
+        
+        switch(option){ //main switch option
 
-        switch (option) {
+        case 1: //start of student management
+            printf("1. Register new student\n");
+            printf("2. Search Student\n");
+            printf("3. Delete student record\n");
+            printf("4. View student details\n");
+            printf("5. Back to main menu\n");
+            printf("Enter an option: ");
+            scanf("%d",&option);
+            switch(option){
             case 1:
                 printf("\nNEW STUDENT REGISTRATION\n");
                 printf("1. Male student registration\n");
@@ -30,7 +36,7 @@ int main() {
                 printf("3. Back to main menu\n");
                 printf("Enter an option: ");
                 scanf("%d", &option);
-
+    
                 switch (option) {
                     case 1:
                         printf("---------------------------------------------\n");
@@ -51,39 +57,8 @@ int main() {
                         printf("Invalid choice\n");
                 }
                 break;
-
+            
             case 2:
-                printf("\nVIEW STUDENT REGISTRATION\n");
-                printf("1. Male student registration details\n");
-                printf("2. Female student registration details\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("\nMale registration details\n");
-                        printf("---------------------------------------------\n");
-                        viewmaledetails();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("\nFemale registration details\n");
-                        printf("---------------------------------------------\n");
-                        viewfemaledetails();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
-                break;
-
-            case 3:
                 printf("\nSEARCH STUDENT\n");
                 printf("1. Search male student\n");
                 printf("2. Search female student\n");
@@ -113,99 +88,8 @@ int main() {
                         printf("Invalid option\n");
                 }
                 break;
-
-            case 4:
-                printf("\nREGISTER HOSTELS\n");
-                printf("1. Register male Hostel\n");
-                printf("2. Register female Hostel\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("\nMale hostel registration\n");
-                        printf("---------------------------------------------\n");
-                        registermaleHostel();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("\nFemale hostel registration\n");
-                        printf("---------------------------------------------\n");
-                        registerfemaleHostel();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
-                break;
-
-            case 5:
-                printf("\nVIEW HOSTELS\n");
-                printf("1. View male hostels\n");
-                printf("2. View female hostels\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("\nViewing all male hostels\n");
-                        printf("---------------------------------------------\n");
-                        viewmalehostels();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("\nViewing all female hostels\n");
-                        printf("---------------------------------------------\n");
-                        viewfemalehostels();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
-                break;
-
-            case 6:
-                printf("\nHOSTEL ALLOCATION\n");
-                printf("1. Allocate male hostel\n");
-                printf("2. Allocate female hostel\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("---------------------------------------------\n");
-                        allocatemalehostel();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("---------------------------------------------\n");
-                        allocatefemalehostel();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
-                break;
-
-            case 7:
+            
+            case 3:
                 printf("\nDELETE STUDENTS' RECORD\n");
                 printf("1. Delete male student registration details\n");
                 printf("2. Delete female student registration details\n");
@@ -238,7 +122,156 @@ int main() {
                 }
                 break;
 
-            case 8:
+            case 4:
+                printf("\nVIEW STUDENT REGISTRATION\n");
+                printf("1. Male student registration details\n");
+                printf("2. Female student registration details\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("\nMale registration details\n");
+                        printf("---------------------------------------------\n");
+                        viewmaledetails();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("\nFemale registration details\n");
+                        printf("---------------------------------------------\n");
+                        viewfemaledetails();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+
+            case 5:
+                continue;
+
+            default:
+            printf("Invalid option\n");
+
+
+            }//end of student management
+
+        break;
+            //end of case 1
+
+
+        case 2:
+            printf("\nHOSTEL MANAGEMENT\n\n");
+            printf("choose one of the options\n");
+            printf("1. Register new hostel\n");
+            printf("2. View hostels\n");
+            printf("3. Allocate hostel\n");
+            printf("4. View allocated students\n");
+            printf("5. View allocated students\n");
+            printf("6. Vacate hostel\n");
+            printf("7. Back to main menu\n");
+            printf("Enter an option: ");
+            scanf("%d",&option);
+
+            switch(option){
+            case 1:
+                printf("\nREGISTER HOSTELS\n");
+                printf("1. Register male Hostel\n");
+                printf("2. Register female Hostel\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("\nMale hostel registration\n");
+                        printf("---------------------------------------------\n");
+                        registermaleHostel();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("\nFemale hostel registration\n");
+                        printf("---------------------------------------------\n");
+                        registerfemaleHostel();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+
+            case 2:
+                printf("\nVIEW HOSTELS\n");
+                printf("1. View male hostels\n");
+                printf("2. View female hostels\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("\nViewing all male hostels\n");
+                        printf("---------------------------------------------\n");
+                        viewmalehostels();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("\nViewing all female hostels\n");
+                        printf("---------------------------------------------\n");
+                        viewfemalehostels();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+
+            case 3:
+                printf("\nHOSTEL ALLOCATION\n");
+                printf("1. Allocate male hostel\n");
+                printf("2. Allocate female hostel\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("---------------------------------------------\n");
+                        allocatemalehostel();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("---------------------------------------------\n");
+                        allocatefemalehostel();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+
+            case 4:
                 printf("\nVIEW ALLOCATED STUDENTS\n");
                 printf("1. View allocated male students\n");
                 printf("2. View allocated female students\n");
@@ -267,7 +300,7 @@ int main() {
                 }
                 break;
 
-            case 9:
+            case 5:
                 printf("\nVIEW ALLOCATED HOSTELS\n");
                 printf("1. View allocated male hostels\n");
                 printf("2. View allocated female hostels\n");
@@ -296,7 +329,7 @@ int main() {
                 }
                 break;
 
-            case 10:
+            case 6:
                 printf("\nVACATE HOSTELS\n");
                 printf("1. Vacate male hostels\n");
                 printf("2. Vacate female hostels\n");
@@ -325,9 +358,26 @@ int main() {
                 }
                 break;
 
+            case 7:
+                continue;
 
-            case 11:
-                printf("Are you sure you want to exit?\n");
+            default:
+            printf("Invalid option\n");
+
+            }
+            break;
+
+        case 3:
+            printf("\nComing soon!\n\n");
+            break;
+
+        case 4:
+        printf("\nLIBRARY MANAGEMENT\n\n");
+         viewbookdetails() ;
+        break;
+
+        case 5:
+            printf("Are you sure you want to exit?\n");
                 printf("1. Yes\n");
                 printf("2. No\n");
                 printf("Enter an option: ");
@@ -346,13 +396,15 @@ int main() {
                 }
                 break;
 
-                           
 
+
+            //default and end of the main switch option
             default:
-                printf("Invalid selection.\n");
-                break;
+            printf("Invalid choice.\n");
         }
-    } while (option != 10);
-
+    } while(option !=10);
     return 0;
+                    
+
+
 }

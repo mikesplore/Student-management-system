@@ -22,5 +22,7 @@ void searchmalestudent(int id);
 void searchfemalestudent(int id);
 void deleteMaleStudentRecord(int id);
 void deleteFemaleStudentRecord(int id);
+void editmalerecords();
+void editfemalerecords();
 
 #endif  // ADMISSION_H

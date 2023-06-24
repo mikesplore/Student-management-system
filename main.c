@@ -21,11 +21,13 @@ int main() {
         switch(option){ //main switch option
 
         case 1: //start of student management
+            printf("\nSTUDENT MANAGEMENT\n");
             printf("1. Register new student\n");
             printf("2. Search Student\n");
             printf("3. Delete student record\n");
             printf("4. View student details\n");
-            printf("5. Back to main menu\n");
+            printf("5. Edit student details\n");
+            printf("6. Back to main menu\n");
             printf("Enter an option: ");
             scanf("%d",&option);
             switch(option){
@@ -100,16 +102,12 @@ int main() {
                 switch (option) {
                     case 1:
                         printf("---------------------------------------------\n");
-                        printf("Enter student ID: ");
-                        scanf("%d", &id);
                         deleteMaleStudentRecord(id);
                         printf("---------------------------------------------\n");
                         break;
 
                     case 2:
                         printf("---------------------------------------------\n");
-                        printf("Enter student ID: ");
-                        scanf("%d", &id);
                         deleteFemaleStudentRecord(id);
                         printf("---------------------------------------------\n");
                         break;
@@ -154,7 +152,36 @@ int main() {
                 break;
 
             case 5:
-                continue;
+                printf("\nEDIT STUDENT RECORDS\n");
+                printf("1. Edit male student record\n");
+                printf("2. Edit female student record\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+    
+                switch (option) {
+                    case 1:
+                        printf("---------------------------------------------\n");
+                        editmalerecords();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("---------------------------------------------\n");
+                        editfemalerecords();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid choice\n");
+                }
+                break;
+
+            case 6:
+            continue;
 
             default:
             printf("Invalid option\n");
@@ -168,7 +195,6 @@ int main() {
 
         case 2:
             printf("\nHOSTEL MANAGEMENT\n\n");
-            printf("choose one of the options\n");
             printf("1. Register new hostel\n");
             printf("2. View hostels\n");
             printf("3. Allocate hostel\n");
@@ -368,7 +394,7 @@ int main() {
             break;
 
         case 3:
-            printf("\nComing soon!\n\n");
+            editmalerecords();
             break;
 
         case 4:

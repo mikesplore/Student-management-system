@@ -8,6 +8,11 @@ STUDENTS MANAGEMENT SYSTEM
    -Address
    -Phone number
 
+   *register student details
+   *edit student details
+   *delete student details
+   *view student details
+   
 2. HOSTELS 
    -Hostel registration
    -View registered hostels
@@ -22,4 +27,4 @@ STUDENTS MANAGEMENT SYSTEM
 
 I'm looking for a collaborator. Whatsapp me 👇                                            
 https://api.whatsapp.com/send/?phone=%2B254799013845&text=Hey+Mike&type=phone_number&app_absent=0 
->>>>>>> origin/master
+

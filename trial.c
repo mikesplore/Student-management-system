@@ -1,52 +1,49 @@
-void editfemalerecords() {
-    int reg, reg1, dob, option, phone;
-    char name[100], nationality[100], address[100];
-    struct Student student;
+void edithosteldetails() {
+    int num, num1, option;
+    char name[100], availability[100];
+   
 
-    printf("Which detail do you want to edit?\n");
-    printf("1. Registration number\n");
-    printf("2. Name\n");
-    printf("3. Date of birth\n");
-    printf("4. Nationality\n");
-    printf("5. Address\n");
-    printf("6. Phone number\n");
+    printf("Which hostel detail do you want to edit?\n");
+    printf("1. Hostel room number\n");
+    printf("2. Hostel name\n");
+    printf("3. Hostel availability\n");
+    printf("4. Back to main menu\n");
     printf("Enter an option: ");
     scanf("%d", &option);
 
     switch (option) {
         case 1:
-            printf("Enter the regNo you want to edit: ");
-            scanf("%d", &reg);
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
 
-            FILE* regfile = fopen("femaledetails.txt", "r");
-            FILE* tempFile = fopen("temp.txt", "w");
+            FILE* reg1 = fopen("malehostel.txt", "r");
+            FILE* Temp1 = fopen("temp.txt", "w");
 
-            if (regfile != NULL && tempFile != NULL) {
+            if (reg1 != NULL && Temp1 != NULL) {
                 char line[256];
                 int found = 0;
 
-                while (fgets(line, sizeof(line), regfile)) {
-                    sscanf(line, "%d, %[^,], %d, %[^,], %[^,], %d", &student.regNo, student.name, &student.dob, student.nationality, student.address, &student.phone);
-
-                    if (student.regNo == reg) {
-                        printf("Enter the new regNo: ");
-                        scanf("%d", &reg1);
-                        fprintf(tempFile, "%d, %s, %d, %s, %s, %d\n", reg1, student.name, student.dob, student.nationality, student.address, student.phone);
+                while (fgets(line, sizeof(line), reg1)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, hostel.availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room Number: ");
+                        scanf("%d", &num1);
+                        fprintf(Temp1, "%d, %s, %s\n", num1, hostel.hostelName, hostel.availability);
                         printf("Details updated successfully\n");
                         found = 1;
                     } else {
-                        fprintf(tempFile, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
+                        fprintf(Temp1, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, hostel.availability);
                     }
                 }
 
-                fclose(regfile);
-                fclose(tempFile);
+                fclose(reg1);
+                fclose(Temp1);
 
                 if (!found) {
-                    printf("Student with id %d not found.\n", reg);
+                    printf("Room number %d not found.\n", num);
                 } else {
-                    remove("femaledetails.txt");
-                    rename("temp.txt", "femaledetails.txt");
+                    remove("malehostel.txt");
+                    rename("temp.txt", "malehostel.txt");
                 }
             } else {
                 printf("Error opening file.\n");
@@ -54,38 +51,37 @@ void editfemalerecords() {
             break;
 
         case 2:
-            printf("Enter the regNo of the student: ");
-            scanf("%d", &reg);
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
 
-            FILE* namefile = fopen("femaledetails.txt", "r");
-            FILE* tempFile1 = fopen("temp.txt", "w");
+            FILE* reg2 = fopen("malehostel.txt", "r");
+            FILE* Temp2 = fopen("temp.txt", "w");
 
-            if (namefile != NULL && tempFile1 != NULL) {
+            if (reg2 != NULL && Temp2 != NULL) {
                 char line[256];
                 int found = 0;
 
-                while (fgets(line, sizeof(line), namefile)) {
-                    sscanf(line, "%d, %[^,], %d, %[^,], %[^,], %d", &student.regNo, student.name, &student.dob, student.nationality, student.address, &student.phone);
-
-                    if (student.regNo == reg) {
-                        printf("Enter the new name: ");
-                        scanf(" %[^\n]%*c", name);
-                        fprintf(tempFile1, "%d, %s, %d, %s, %s, %d\n", student.regNo, name, student.dob, student.nationality, student.address, student.phone);
+                while (fgets(line, sizeof(line), reg2)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, hostel.availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room name: ");
+                        scanf(" %[^\n]", name);
+                        fprintf(Temp2, "%d, %s, %s\n", hostel.roomNo, name, hostel.availability);
                         printf("Details updated successfully\n");
                         found = 1;
                     } else {
-                        fprintf(tempFile1, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
+                        fprintf(Temp2, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, hostel.availability);
                     }
                 }
 
-                fclose(namefile);
-                fclose(tempFile1);
+                fclose(reg2);
+                fclose(Temp2);
 
                 if (!found) {
-                    printf("Student with id %d not found.\n", reg);
+                    printf("Room number %d not found.\n", num);
                 } else {
-                    remove("femaledetails.txt");
-                    rename("temp.txt", "femaledetails.txt");
+                    remove("malehostel.txt");
+                    rename("temp.txt", "malehostel.txt");
                 }
             } else {
                 printf("Error opening file.\n");
@@ -93,155 +89,37 @@ void editfemalerecords() {
             break;
 
         case 3:
-            printf("Enter the regNo of the student: ");
-            scanf("%d", &reg);
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
 
-            FILE* dobfile = fopen("femaledetails.txt", "r");
-            FILE* tempFile2 = fopen("temp.txt", "w");
+            FILE* reg3 = fopen("malehostel.txt", "r");
+            FILE* Temp3 = fopen("temp.txt", "w");
 
-            if (dobfile != NULL && tempFile2 != NULL) {
+            if (reg3 != NULL && Temp3 != NULL) {
                 char line[256];
                 int found = 0;
 
-                while (fgets(line, sizeof(line), dobfile)) {
-                    sscanf(line, "%d, %[^,], %d, %[^,], %[^,], %d", &student.regNo, student.name, &student.dob, student.nationality, student.address, &student.phone);
-
-                    if (student.regNo == reg) {
-                        printf("Enter the new date of birth: ");
-                        scanf("%d", &dob);
-                        fprintf(tempFile2, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, dob, student.nationality, student.address, student.phone);
+                while (fgets(line, sizeof(line), reg3)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, hostel.availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room availability: ");
+                        scanf(" %[^\n]", availability);
+                        fprintf(Temp3, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
                         printf("Details updated successfully\n");
                         found = 1;
                     } else {
-                        fprintf(tempFile2, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
+                        fprintf(Temp3, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, hostel.availability);
                     }
                 }
 
-                fclose(dobfile);
-                fclose(tempFile2);
+                fclose(reg3);
+                fclose(Temp3);
 
                 if (!found) {
-                    printf("Student with id %d not found.\n", reg);
+                    printf("Room number %d not found.\n", num);
                 } else {
-                    remove("femaledetails.txt");
-                    rename("temp.txt", "femaledetails.txt");
-                }
-            } else {
-                printf("Error opening file.\n");
-            }
-            break;
-
-        case 4:
-            printf("Enter the regNo of the student: ");
-            scanf("%d", &reg);
-
-            FILE* natfile = fopen("femaledetails.txt", "r");
-            FILE* tempFile3 = fopen("temp.txt", "w");
-
-            if (natfile != NULL && tempFile3 != NULL) {
-                char line[256];
-                int found = 0;
-
-                while (fgets(line, sizeof(line), natfile)) {
-                    sscanf(line, "%d, %[^,], %d, %[^,], %[^,], %d", &student.regNo, student.name, &student.dob, student.nationality, student.address, &student.phone);
-
-                    if (student.regNo == reg) {
-                        printf("Enter the new nationality: ");
-                        scanf(" %[^\n]%*c", nationality);
-                        fprintf(tempFile3, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, nationality, student.address, student.phone);
-                        printf("Details updated successfully\n");
-                        found = 1;
-                    } else {
-                        fprintf(tempFile3, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
-                    }
-                }
-
-                fclose(natfile);
-                fclose(tempFile3);
-
-                if (!found) {
-                    printf("Student with id %d not found.\n", reg);
-                } else {
-                    remove("femaledetails.txt");
-                    rename("temp.txt", "femaledetails.txt");
-                }
-            } else {
-                printf("Error opening file.\n");
-            }
-            break;
-
-        case 5:
-            printf("Enter the regNo of the student: ");
-            scanf("%d", &reg);
-
-            FILE* addrfile = fopen("femaledetails.txt", "r");
-            FILE* tempFile5 = fopen("temp.txt", "w");
-
-            if (addrfile != NULL && tempFile5 != NULL) {
-                char line[256];
-                int found = 0;
-
-                while (fgets(line, sizeof(line), addrfile)) {
-                    sscanf(line, "%d, %[^,], %d, %[^,], %[^,], %d", &student.regNo, student.name, &student.dob, student.nationality, student.address, &student.phone);
-
-                    if (student.regNo == reg) {
-                        printf("Enter the new address: ");
-                        scanf(" %[^\n]%*c", address);
-                        fprintf(tempFile5, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, address, student.phone);
-                        printf("Details updated successfully\n");
-                        found = 1;
-                    } else {
-                        fprintf(tempFile5, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
-                    }
-                }
-
-                fclose(addrfile);
-                fclose(tempFile5);
-
-                if (!found) {
-                    printf("Student with id %d not found.\n", reg);
-                } else {
-                    remove("femaledetails.txt");
-                    rename("temp.txt", "femaledetails.txt");
-                }
-            } else {
-                printf("Error opening file.\n");
-            }
-            break;
-
-        case 6:
-            printf("Enter the regNo of the student: ");
-            scanf("%d", &reg);
-
-            FILE* phonefile = fopen("femaledetails.txt", "r");
-            FILE* tempFile4 = fopen("temp.txt", "w");
-
-            if (phonefile != NULL && tempFile4 != NULL) {
-                char line[256];
-                int found = 0;
-
-                while (fgets(line, sizeof(line), phonefile)) {
-                    sscanf(line, "%d, %[^,], %d, %[^,], %[^,], %d", &student.regNo, student.name, &student.dob, student.nationality, student.address, &student.phone);
-
-                    if (student.regNo == reg) {
-                        printf("Enter the new phone number: ");
-                        scanf("%d", &phone);
-                        fprintf(tempFile4, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, phone);
-                        printf("Details updated successfully\n");
-                        found = 1;
-                    } else {
-                        fprintf(tempFile4, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
-                    }
-                }
-
-                fclose(phonefile);
-                fclose(tempFile4);
-
-                if (!found) {
-                    printf("Student with id %d not found.\n", reg);
-                } else {
-                    remove("femaledetails.txt");
-                    rename("temp.txt", "femaledetails.txt");
+                    remove("malehostel.txt");
+                    rename("temp.txt", "malehostel.txt");
                 }
             } else {
                 printf("Error opening file.\n");
@@ -249,7 +127,7 @@ void editfemalerecords() {
             break;
 
         default:
-            printf("Invalid option selected.\n");
+            printf("Invalid option\n");
             break;
     }
 }

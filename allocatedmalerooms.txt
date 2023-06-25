@@ -1,0 +1,5 @@
+Student name:  Michael Odhiambo
+Student regNo: 4
+Hostel room number: 1
+Hostel name: Obote, 
+

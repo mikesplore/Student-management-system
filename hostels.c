@@ -205,7 +205,7 @@ void allocatemalehostel() {
 
     FILE* allocfile = fopen("allocatedmalerooms.txt", "a");
     if (allocfile != NULL) {
-        fprintf(allocfile, "Student name: %s\nStudent regNo: %d\nHostel room number: %d\nHostel name: %s \n\n", student.name, student.regNo, hostel.roomNo, hostel.hostelName);
+        fprintf(allocfile, "Student name: %s\nStudent regNo: %d\nHostel room number: %d\nHostel name: %s\n\n", student.name, student.regNo, hostel.roomNo, hostel.hostelName);
         fclose(allocfile);
         printf("Room allocated successfully\n");
     } else {
@@ -284,7 +284,7 @@ void allocatefemalehostel() {
 }
 
 //VIEW ALLOCATED MALE AND FEMALE HOSTELS
-//view allocated male hostels
+//view allocated male students
 void allocatedmalestudents() {
     FILE* file = fopen("allocatedmalerooms.txt", "r");
     if (file != NULL) {
@@ -298,7 +298,7 @@ void allocatedmalestudents() {
     }
 }
 
-//view allocated female hostels
+//view allocated female students
 void allocatedfemalestudents() {
     FILE* file = fopen("allocatedfemalerooms.txt", "r");
     if (file != NULL) {
@@ -317,7 +317,7 @@ void allocatedmalerooms() {
     struct Hostel hostel;
     
 
-    FILE* file = fopen("fmalehostel.txt", "r");
+    FILE* file = fopen("malehostel.txt", "r");
 
     if (file != NULL) {
         char line[256];
@@ -507,5 +507,353 @@ void vacatefemalehostel() {
         }
     } else {
         printf("Error opening the allocated room details file\n");
+    }
+}
+
+//edithosteldetails
+void editmalehosteldetails(){
+int num,num1,option;
+char avail[100],name[100];
+struct Hostel hostel;
+printf("Which hostel detail do you want to edit?\n");
+    printf("1. Hostel room number\n");
+    printf("2. Hostel name\n");
+    printf("3. Hostel availability\n");
+    printf("4. Back to main menu\n");
+    printf("Enter an option: ");
+    scanf("%d", &option);
+
+    switch (option) {
+        case 1:
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
+
+            FILE* reg1 = fopen("malehostel.txt", "r");
+            FILE* Temp1 = fopen("temp.txt", "w");
+
+            if (reg1 != NULL && Temp1 != NULL) {
+                char line[256];
+                int found = 0;
+
+                while (fgets(line, sizeof(line), reg1)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room Number: ");
+                        scanf("%d", &num1);
+                        fprintf(Temp1, "%d, %s, %s\n", num1, hostel.hostelName, availability);
+                        printf("Details updated successfully\n");
+                        found = 1;
+                    } else {
+                        fprintf(Temp1, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
+                    }
+                }
+
+                fclose(reg1);
+                fclose(Temp1);
+
+                if (!found) {
+                    printf("Room number %d not found.\n", num);
+                } else {
+                    remove("malehostel.txt");
+                    rename("temp.txt", "malehostel.txt");
+                }
+            } else {
+                printf("Error opening file.\n");
+            }
+            break;
+
+        case 2:
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
+
+            FILE* reg2 = fopen("malehostel.txt", "r");
+            FILE* Temp2 = fopen("temp.txt", "w");
+
+            if (reg2 != NULL && Temp2 != NULL) {
+                char line[256];
+                int found = 0;
+
+                while (fgets(line, sizeof(line), reg2)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room name: ");
+                        scanf(" %[^\n]", name);
+                        fprintf(Temp2, "%d, %s, %s\n", hostel.roomNo, name, availability);
+                        printf("Details updated successfully\n");
+                        found = 1;
+                    } else {
+                        fprintf(Temp2, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
+                    }
+                }
+
+                fclose(reg2);
+                fclose(Temp2);
+
+                if (!found) {
+                    printf("Room number %d not found.\n", num);
+                } else {
+                    remove("malehostel.txt");
+                    rename("temp.txt", "malehostel.txt");
+                }
+            } else {
+                printf("Error opening file.\n");
+            }
+            break;
+
+        case 3:
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
+
+            FILE* reg3 = fopen("malehostel.txt", "r");
+            FILE* Temp3 = fopen("temp.txt", "w");
+
+            if (reg3 != NULL && Temp3 != NULL) {
+                char line[256];
+                int found = 0;
+
+                while (fgets(line, sizeof(line), reg3)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room availability: ");
+                        scanf(" %[^\n]", avail);
+                        fprintf(Temp3, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, avail);
+                        printf("Details updated successfully\n");
+                        found = 1;
+                    } else {
+                        fprintf(Temp3, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
+                    }
+                }
+
+                fclose(reg3);
+                fclose(Temp3);
+
+                if (!found) {
+                    printf("Room number %d not found.\n", num);
+                } else {
+                    remove("malehostel.txt");
+                    rename("temp.txt", "malehostel.txt");
+                }
+            } else {
+                printf("Error opening file.\n");
+            }
+            break;
+
+        default:
+            printf("Main menu...\n");
+            break;
+    }
+}
+
+//editfemalehostel
+void editfemalehosteldetails(){
+int num,num1,option;
+char avail[100],name[100];
+struct Hostel hostel;
+printf("Which hostel detail do you want to edit?\n");
+    printf("1. Hostel room number\n");
+    printf("2. Hostel name\n");
+    printf("3. Hostel availability\n");
+    printf("4. Back to main menu\n");
+    printf("Enter an option: ");
+    scanf("%d", &option);
+
+    switch (option) {
+        case 1:
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
+
+            FILE* reg1 = fopen("femalehostel.txt", "r");
+            FILE* Temp1 = fopen("temp.txt", "w");
+
+            if (reg1 != NULL && Temp1 != NULL) {
+                char line[256];
+                int found = 0;
+
+                while (fgets(line, sizeof(line), reg1)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room Number: ");
+                        scanf("%d", &num1);
+                        fprintf(Temp1, "%d, %s, %s\n", num1, hostel.hostelName, availability);
+                        printf("Details updated successfully\n");
+                        found = 1;
+                    } else {
+                        fprintf(Temp1, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
+                    }
+                }
+
+                fclose(reg1);
+                fclose(Temp1);
+
+                if (!found) {
+                    printf("Room number %d not found.\n", num);
+                } else {
+                    remove("femalehostel.txt");
+                    rename("temp.txt", "femalehostel.txt");
+                }
+            } else {
+                printf("Error opening file.\n");
+            }
+            break;
+
+        case 2:
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
+
+            FILE* reg2 = fopen("femalehostel.txt", "r");
+            FILE* Temp2 = fopen("temp.txt", "w");
+
+            if (reg2 != NULL && Temp2 != NULL) {
+                char line[256];
+                int found = 0;
+
+                while (fgets(line, sizeof(line), reg2)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room name: ");
+                        scanf(" %[^\n]", name);
+                        fprintf(Temp2, "%d, %s, %s\n", hostel.roomNo, name, availability);
+                        printf("Details updated successfully\n");
+                        found = 1;
+                    } else {
+                        fprintf(Temp2, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
+                    }
+                }
+
+                fclose(reg2);
+                fclose(Temp2);
+
+                if (!found) {
+                    printf("Room number %d not found.\n", num);
+                } else {
+                    remove("femalehostel.txt");
+                    rename("temp.txt", "femalehostel.txt");
+                }
+            } else {
+                printf("Error opening file.\n");
+            }
+            break;
+
+        case 3:
+            printf("Enter the room number you want to edit: ");
+            scanf("%d", &num);
+
+            FILE* reg3 = fopen("femalehostel.txt", "r");
+            FILE* Temp3 = fopen("temp.txt", "w");
+
+            if (reg3 != NULL && Temp3 != NULL) {
+                char line[256];
+                int found = 0;
+
+                while (fgets(line, sizeof(line), reg3)) {
+                    sscanf(line, "%d, %[^,], %[^\n]", &hostel.roomNo, hostel.hostelName, availability);
+                    if (hostel.roomNo == num) {
+                        printf("Enter the new room availability: ");
+                        scanf(" %[^\n]", avail);
+                        fprintf(Temp3, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, avail);
+                        printf("Details updated successfully\n");
+                        found = 1;
+                    } else {
+                        fprintf(Temp3, "%d, %s, %s\n", hostel.roomNo, hostel.hostelName, availability);
+                    }
+                }
+
+                fclose(reg3);
+                fclose(Temp3);
+
+                if (!found) {
+                    printf("Room number %d not found.\n", num);
+                } else {
+                    remove("femalehostel.txt");
+                    rename("temp.txt", "femalehostel.txt");
+                }
+            } else {
+                printf("Error opening file.\n");
+            }
+            break;
+
+        default:
+            printf("Main menu...\n");
+            break;
+    }
+}
+
+void deletemalehostelrecord(int hnum) {
+    struct Hostel hostel;
+    printf("Enter hostel Room number to delete: ");
+    scanf("%d", &hnum);
+
+    FILE* delfile = fopen("malehostel.txt", "r");
+    if (delfile != NULL) {
+        FILE* tempFile = fopen("temp.txt", "w");
+        if (tempFile != NULL) {
+            char line[256];
+            int found = 0;
+            while (fgets(line, sizeof(line), delfile)) {
+                int regNo;
+                sscanf(line, "%d", &regNo);
+                if (regNo != hnum) {
+                    fprintf(tempFile, "%s", line);
+                } else {
+                    found = 1;
+                }
+            }
+            fclose(tempFile);
+            fclose(delfile);
+
+            if (found) {
+                remove("malehostel.txt");
+                rename("temp.txt", "malehostel.txt");
+                printf("Hostel with ID %d deleted successfully\n", hnum);
+            } else {
+                printf("Room  %d not found\n", hnum);
+                remove("temp.txt");
+            }
+        } else {
+            printf("Error creating temporary file\n");
+            fclose(delfile);
+        }
+    } else {
+        printf("Error opening the file\n");
+    }
+}
+
+void deletefemalehostelrecord(int hnum) {
+    struct Hostel hostel;
+    printf("Enter hostel Room number to delete: ");
+    scanf("%d", &hnum);
+
+    FILE* delfile = fopen("femalehostel.txt", "r");
+    if (delfile != NULL) {
+        FILE* tempFile = fopen("temp.txt", "w");
+        if (tempFile != NULL) {
+            char line[256];
+            int found = 0;
+            while (fgets(line, sizeof(line), delfile)) {
+                int regNo;
+                sscanf(line, "%d", &regNo);
+                if (regNo != hnum) {
+                    fprintf(tempFile, "%s", line);
+                } else {
+                    found = 1;
+                }
+            }
+            fclose(tempFile);
+            fclose(delfile);
+
+            if (found) {
+                remove("femalehostel.txt");
+                rename("temp.txt", "femalehostel.txt");
+                printf("Hostel with ID %d deleted successfully\n", hnum);
+            } else {
+                printf("Room  %d not found\n", hnum);
+                remove("temp.txt");
+            }
+        } else {
+            printf("Error creating temporary file\n");
+            fclose(delfile);
+        }
+    } else {
+        printf("Error opening the file\n");
     }
 }

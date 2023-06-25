@@ -22,5 +22,9 @@ void allocatedmalerooms();
 void allocatedfemalerooms(); 
 void vacatemalehostel();
 void vacatefemalehostel();
+void editmalehosteldetails();
+void editfemalehosteldetails();
+void deletemalehostelrecord(int hnum);
+void deletefemalehostelrecord(int hnum);
 
 #endif  // HOSTELS_H

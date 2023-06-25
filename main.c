@@ -3,7 +3,7 @@
 #include "hostels.h"
 #include "library.h"
 
- int option, id, roomid;
+ int option, id, roomid,hnum;
 
 int main() {
 
@@ -199,9 +199,11 @@ int main() {
             printf("2. View hostels\n");
             printf("3. Allocate hostel\n");
             printf("4. View allocated students\n");
-            printf("5. View allocated students\n");
+            printf("5. View allocated hostels\n");
             printf("6. Vacate hostel\n");
-            printf("7. Back to main menu\n");
+            printf("7. Edit hostel details\n");
+            printf("8. Delete hostel detail\n");
+            printf("9. Back to main menu\n");
             printf("Enter an option: ");
             scanf("%d",&option);
 
@@ -385,6 +387,64 @@ int main() {
                 break;
 
             case 7:
+                printf("\nEDIT HOSTEL DETAILS\n");
+                printf("1. Edit male hostel details\n");
+                printf("2. Edit female hostel details\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("---------------------------------------------\n");
+                        editmalehosteldetails();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("---------------------------------------------\n");
+                        editfemalehosteldetails();
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+            
+            case 8:
+                printf("\nDELETE HOSTEL DETAILS\n");
+                printf("1. Delete male hostel details\n");
+                printf("2. Delete female hostel details\n");
+                printf("3. Back to main menu\n");
+                printf("Enter an option: ");
+                scanf("%d", &option);
+
+                switch (option) {
+                    case 1:
+                        printf("---------------------------------------------\n");
+                        deletemalehostelrecord(hnum);
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 2:
+                        printf("---------------------------------------------\n");
+                        deletefemalehostelrecord(hnum);
+                        printf("---------------------------------------------\n");
+                        break;
+
+                    case 3:
+                        continue;
+
+                    default:
+                        printf("Invalid option\n");
+                }
+                break;
+
+            case 9:
                 continue;
 
             default:
@@ -394,7 +454,8 @@ int main() {
             break;
 
         case 3:
-            editmalerecords();
+        int hnum;
+            //
             break;
 
         case 4:

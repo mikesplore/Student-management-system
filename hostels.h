@@ -24,7 +24,7 @@ void vacatemalehostel();
 void vacatefemalehostel();
 void editmalehosteldetails();
 void editfemalehosteldetails();
-void deletemalehostelrecord(int hnum);
-void deletefemalehostelrecord(int hnum);
+void deleteHostelRecord();
+void transfermalehostel();
 
 #endif  // HOSTELS_H

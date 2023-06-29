@@ -778,82 +778,97 @@ printf("Which hostel detail do you want to edit?\n");
     }
 }
 
-void deletemalehostelrecord(int hnum) {
-    struct Hostel hostel;
+void deleteHostelRecord() {
+    int hnum;
     printf("Enter hostel Room number to delete: ");
     scanf("%d", &hnum);
 
-    FILE* delfile = fopen("malehostel.txt", "r");
-    if (delfile != NULL) {
-        FILE* tempFile = fopen("temp.txt", "w");
-        if (tempFile != NULL) {
+    // Delete record from male hostel file
+    FILE* maleFile = fopen("malehostel.txt", "r");
+    if (maleFile != NULL) {
+        FILE* maleTempFile = fopen("maletemp.txt", "w");
+        if (maleTempFile != NULL) {
             char line[256];
             int found = 0;
-            while (fgets(line, sizeof(line), delfile)) {
+            while (fgets(line, sizeof(line), maleFile)) {
                 int regNo;
                 sscanf(line, "%d", &regNo);
                 if (regNo != hnum) {
-                    fprintf(tempFile, "%s", line);
+                    fprintf(maleTempFile, "%s", line);
                 } else {
                     found = 1;
                 }
             }
-            fclose(tempFile);
-            fclose(delfile);
+            fclose(maleTempFile);
+            fclose(maleFile);
 
             if (found) {
                 remove("malehostel.txt");
-                rename("temp.txt", "malehostel.txt");
-                printf("Hostel with ID %d deleted successfully\n", hnum);
+                rename("maletemp.txt", "malehostel.txt");
+                printf("Hostel with Room number %d deleted successfully from male hostel\n", hnum);
             } else {
-                printf("Room  %d not found\n", hnum);
-                remove("temp.txt");
+                printf("Room number %d not found in male hostel\n", hnum);
+                remove("maletemp.txt");
             }
         } else {
-            printf("Error creating temporary file\n");
-            fclose(delfile);
+            printf("Error creating temporary file for male hostel\n");
+            fclose(maleFile);
         }
     } else {
-        printf("Error opening the file\n");
+        printf("Error opening the male hostel file\n");
     }
-}
 
-void deletefemalehostelrecord(int hnum) {
-    struct Hostel hostel;
-    printf("Enter hostel Room number to delete: ");
-    scanf("%d", &hnum);
-
-    FILE* delfile = fopen("femalehostel.txt", "r");
-    if (delfile != NULL) {
-        FILE* tempFile = fopen("temp.txt", "w");
-        if (tempFile != NULL) {
+    // Delete record from female hostel file
+    FILE* femaleFile = fopen("femalehostel.txt", "r");
+    if (femaleFile != NULL) {
+        FILE* femaleTempFile = fopen("femaletemp.txt", "w");
+        if (femaleTempFile != NULL) {
             char line[256];
             int found = 0;
-            while (fgets(line, sizeof(line), delfile)) {
+            while (fgets(line, sizeof(line), femaleFile)) {
                 int regNo;
                 sscanf(line, "%d", &regNo);
                 if (regNo != hnum) {
-                    fprintf(tempFile, "%s", line);
+                    fprintf(femaleTempFile, "%s", line);
                 } else {
                     found = 1;
                 }
             }
-            fclose(tempFile);
-            fclose(delfile);
+            fclose(femaleTempFile);
+            fclose(femaleFile);
 
             if (found) {
                 remove("femalehostel.txt");
-                rename("temp.txt", "femalehostel.txt");
-                printf("Hostel with ID %d deleted successfully\n", hnum);
+                rename("femaletemp.txt", "femalehostel.txt");
+                printf("Hostel with Room number %d deleted successfully from female hostel\n", hnum);
             } else {
-                printf("Room  %d not found\n", hnum);
-                remove("temp.txt");
+                printf("Room number %d not found in female hostel\n", hnum);
+                remove("femaletemp.txt");
             }
         } else {
-            printf("Error creating temporary file\n");
-            fclose(delfile);
+            printf("Error creating temporary file for female hostel\n");
+            fclose(femaleFile);
         }
     } else {
-        printf("Error opening the file\n");
+        printf("Error opening the female hostel file\n");
     }
 }
+
+
+int checkAvailability(int roomNo, const char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (file != NULL) {
+        char line[256];
+        while (fgets(line, sizeof(line), file)) {
+            struct Hostel hostel;
+            sscanf(line, "%d, %[^,], %s", &hostel.roomNo, hostel.hostelName, availability);
+            if (hostel.roomNo == roomNo && strcmp(availability, "available") == 0) {
+                fclose(file);
+                return 1;
+            }
+        }
+        fclose(file);
+    }
+    return 0;
+}
+

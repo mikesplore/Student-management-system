@@ -1,1 +1,2 @@
-10, Hopekid, available
+2, hum, available
+3, hub, available

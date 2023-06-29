@@ -3,7 +3,7 @@
 #include "hostels.h"
 #include "library.h"
 
- int option, id, roomid,hnum;
+ int option, id, roomid,hnum,ibn;
 
 int main() {
 
@@ -61,63 +61,11 @@ int main() {
                 break;
             
             case 2:
-                printf("\nSEARCH STUDENT\n");
-                printf("1. Search male student\n");
-                printf("2. Search female student\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("\nSearch result\n");
-                        printf("---------------------------------------------\n");
-                        searchmalestudent(id);
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("\nSearch result\n");
-                        printf("---------------------------------------------\n");
-                        searchfemalestudent(id);
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
+                searchstudentdetails(id);
                 break;
             
             case 3:
-                printf("\nDELETE STUDENTS' RECORD\n");
-                printf("1. Delete male student registration details\n");
-                printf("2. Delete female student registration details\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("---------------------------------------------\n");
-                        deleteMaleStudentRecord(id);
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("---------------------------------------------\n");
-                        deleteFemaleStudentRecord(id);
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
+                deleteStudentRecord(id);
                 break;
 
             case 4:
@@ -152,32 +100,7 @@ int main() {
                 break;
 
             case 5:
-                printf("\nEDIT STUDENT RECORDS\n");
-                printf("1. Edit male student record\n");
-                printf("2. Edit female student record\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-    
-                switch (option) {
-                    case 1:
-                        printf("---------------------------------------------\n");
-                        editmalerecords();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("---------------------------------------------\n");
-                        editfemalerecords();
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid choice\n");
-                }
+                editStudentRecords();
                 break;
 
             case 6:
@@ -417,32 +340,7 @@ int main() {
             
             case 8:
                 printf("\nDELETE HOSTEL DETAILS\n");
-                printf("1. Delete male hostel details\n");
-                printf("2. Delete female hostel details\n");
-                printf("3. Back to main menu\n");
-                printf("Enter an option: ");
-                scanf("%d", &option);
-
-                switch (option) {
-                    case 1:
-                        printf("---------------------------------------------\n");
-                        deletemalehostelrecord(hnum);
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 2:
-                        printf("---------------------------------------------\n");
-                        deletefemalehostelrecord(hnum);
-                        printf("---------------------------------------------\n");
-                        break;
-
-                    case 3:
-                        continue;
-
-                    default:
-                        printf("Invalid option\n");
-                }
-                break;
+                deleteHostelRecord();
 
             case 9:
                 continue;
@@ -454,13 +352,57 @@ int main() {
             break;
 
         case 3:
-        int hnum;
-            //
+        
+            printf("Coming soon!");
             break;
 
         case 4:
         printf("\nLIBRARY MANAGEMENT\n\n");
-         viewbookdetails() ;
+        printf("1. Register new book\n");
+        printf("2. View registered books\n");
+        printf("3. Borrow a book\n");
+        printf("4. View borrowed books\n");
+        printf("5. Return a book\n");
+        printf("6. Search a book\n");
+        printf("7. Delete book record\n");
+        printf("8. Update book record\n");
+        printf("9. Back to main menu\n");
+        printf("Enter your choice: ");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                registerBook();
+                break;
+            case 2:
+                viewregisteredbooks();
+                break;
+            case 3:
+                borrowBook();
+                break;
+            case 4:
+                viewborrowedbooks();
+                break;
+            case 5:
+                returnBook();
+                break;
+            case 6:
+                searchbook(ibn);
+                break;
+            case 7:
+                deletebookrecord(ibn);
+                break;
+            case 8:
+                updatebookrecords();
+                break;
+            case 9:
+                printf("Going back to main menu");
+                break;
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+            
         break;
 
         case 5:
@@ -494,4 +436,4 @@ int main() {
                     
 
 
-}
+    }

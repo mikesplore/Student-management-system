@@ -18,11 +18,9 @@ void maledetails();
 void femaledetails();
 void viewmaledetails();
 void viewfemaledetails();
-void searchmalestudent(int id);
-void searchfemalestudent(int id);
-void deleteMaleStudentRecord(int id);
-void deleteFemaleStudentRecord(int id);
-void editmalerecords();
-void editfemalerecords();
+void searchstudentdetails(int id);
+void deleteStudentRecord(int id);
+void editStudentRecords();
+void editRecords(char* fileName);
 
 #endif  // ADMISSION_H

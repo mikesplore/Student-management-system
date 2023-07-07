@@ -2,7 +2,7 @@ STUDENTS MANAGEMENT SYSTEM WRITTEN IN C LANGUAGE
 
 This is a simple library management system that am working on. 
 
-![User interface](image.png)
+![User interface](MIKE.png)
 
 1. STUDENT ADMISSION 
    a) The following are the required information during the admission process;

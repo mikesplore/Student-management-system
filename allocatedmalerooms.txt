@@ -1,5 +1,5 @@
-Student name:  Ann Ja
-Student regNo: 5
-Hostel room number: 1
+Student name:  Michael Johnson
+Student regNo: 102
+Hostel room number: 7
 Hostel name: Obote,
 

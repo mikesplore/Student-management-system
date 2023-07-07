@@ -34,11 +34,19 @@ int generateIncreasingNumber() {
     writeNumberToFile(number);
 }
 
-void maledetails() {
-    struct Student student;
+void registerStudentDetails(const char* filename) {
+    struct Student {
+        char name[50];
+        int dob;
+        char nationality[50];
+        char address[100];
+        int phone;
+        int regNo;
+    } student;
+
     int option1;
     printf("Enter your Name: ");
-    scanf(" %99[^\n]", student.name);
+    scanf(" %49[^\n]%*c", student.name);
 
     printf("Enter your DOB: ");
     scanf("%d", &student.dob);
@@ -47,7 +55,7 @@ void maledetails() {
     scanf(" %49[^\n]%*c", student.nationality);
 
     printf("Enter your address: ");
-    scanf(" %[^\n]", student.address);
+    scanf(" %[^\n]%*c", student.address);
 
     printf("Enter your mobile phone number: ");
     scanf("%d", &student.phone);
@@ -55,81 +63,37 @@ void maledetails() {
     student.regNo = readNumberFromFile();
     writeNumberToFile(student.regNo + 1);
 
-    FILE* malefile = fopen("maledetails.txt", "a");
-    if (malefile != NULL) {
+    FILE* file = fopen(filename, "a");
+    if (file != NULL) {
         printf("\nConfirm the entered details\n");
         printf("-------------------------------------\n");
-        printf("Registration number: %d\n",student.regNo);
-        printf("Name: %s\n",student.name);
-        printf("Date of birth: %d\n",student.dob);
-        printf("Nationality: %s\n",student.nationality);
-        printf("Address: %s\n",student.address);
-        printf("Phone number: %d\n",student.phone);
+        printf("Registration number: %d\n", student.regNo);
+        printf("Name: %s\n", student.name);
+        printf("Date of birth: %d\n", student.dob);
+        printf("Nationality: %s\n", student.nationality);
+        printf("Address: %s\n", student.address);
+        printf("Phone number: %d\n", student.phone);
         printf("-------------------------------------\n");
-        printf("Do you want to continue?\n1.Yes\n2.No\nEnter an option: ");
+        printf("Do you want to continue?\n1. Yes\n2. No\nEnter an option: ");
         scanf("%d", &option1);
-        if(option1==1){
-        fprintf(malefile, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
-        fclose(malefile);
-        printf("\n\nDetails captured successfully!\n");
-        }else if(option1==2){
+        if (option1 == 1) {
+            fprintf(file, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
+            fclose(file);
+            printf("\n\nDetails captured successfully!\nYour registration number is %d\n", student.regNo);
+        }
+        else if (option1 == 2) {
             printf("Student registration aborted\n");
-        }else{
+        }
+        else {
             printf("Invalid option. Try again\n");
         }
-    } else {
+    }
+    else {
         printf("Error opening the file\n");
     }
 }
 
-//register new female students details
-void femaledetails() {
-    struct Student student;
-    int option1;
-    printf("Enter your Name: ");
-    scanf(" %99[^\n]", student.name);
 
-    printf("Enter your DOB: ");
-    scanf("%d", &student.dob);
-
-    printf("Enter your nationality: ");
-    scanf(" %49[^\n]%*c", student.nationality);
-
-    printf("Enter your address: ");
-    scanf(" %[^\n]", student.address);
-
-    printf("Enter your mobile phone number: ");
-    scanf("%d", &student.phone);
-
-    student.regNo = readNumberFromFile();
-    writeNumberToFile(student.regNo + 1);
-
-    FILE* malefile = fopen("femaledetails.txt", "a");
-    if (malefile != NULL) {
-        printf("\nConfirm the entered details\n");
-        printf("-------------------------------------\n");
-        printf("Registration number: %d\n",student.regNo);
-        printf("Name: %s\n",student.name);
-        printf("Date of birth: %d\n",student.dob);
-        printf("Nationality: %s\n",student.nationality);
-        printf("Address: %s\n",student.address);
-        printf("Phone number: %d\n",student.phone);
-        printf("-------------------------------------\n");
-        printf("Do you want to continue?\n1.Yes\n2.No\nEnter an option: ");
-        scanf("%d", &option1);
-        if(option1==1){
-        fprintf(malefile, "%d, %s, %d, %s, %s, %d\n", student.regNo, student.name, student.dob, student.nationality, student.address, student.phone);
-        fclose(malefile);
-        printf("\n\nDetails captured successfully!\nYour registration number is %d\n", student.regNo);
-        }else if(option1==2){
-            printf("Student registration aborted\n");
-        }else{
-            printf("Invalid option. Try again\n");
-        }
-    } else {
-        printf("Error opening the file\n");
-    }
-}
 
 void viewmaledetails() {
     FILE* file = fopen("maledetails.txt", "r");
@@ -157,8 +121,13 @@ void viewfemaledetails() {
         printf("Error opening the file\n");
     }
 }
+
+void viewAlldetails(){
+    viewmaledetails();
+    viewfemaledetails();
+}
 void searchstudentdetails(int id) {
-    printf("Enter student registration number: ");
+    printf("\nEnter student registration number: ");
     scanf("%d", &id);
     FILE* maleFile = fopen("maledetails.txt", "r");
     FILE* femaleFile = fopen("femaledetails.txt", "r");
@@ -172,7 +141,10 @@ void searchstudentdetails(int id) {
             int regNo;
             sscanf(line, "%d", &regNo);
             if (regNo == id) {
+                printf("\nSearch result:\n");
+                printf("-----------------------------------------------------------\n");
                 printf("%s", line);
+                printf("-----------------------------------------------------------\n");
                 found = 1;
                 break;
             }
@@ -184,7 +156,10 @@ void searchstudentdetails(int id) {
                 int regNo;
                 sscanf(line, "%d", &regNo);
                 if (regNo == id) {
+                    printf("\nSearch result:\n");
+                    printf("-----------------------------------------------------------\n");
                     printf("%s", line);
+                    printf("-----------------------------------------------------------\n");
                     found = 1;
                     break;
                 }
@@ -297,7 +272,7 @@ void editRecords(char* fileName) {
     struct Student student;
     char tempFileName[] = "temp.txt";
 
-    printf("\nWhich detail do you want to edit?\n\n");
+    printf("Which detail do you want to edit?\n\n");
     printf("1. Registration number\n");
     printf("2. Name\n");
     printf("3. Date of birth\n");
@@ -379,9 +354,10 @@ void editRecords(char* fileName) {
 
 void editStudentRecords() {
     int choice;
-    printf("/nWhich set of records do you want to edit?\n");
+    printf("\nWhich set of records do you want to edit?\n");
     printf("1. Male students\n");
     printf("2. Female students\n");
+    printf("3. Back to main menu\n");
     printf("Enter your choice: ");
     scanf("%d", &choice);
 
@@ -392,8 +368,42 @@ void editStudentRecords() {
         case 2:
             editRecords("femaledetails.txt");
             break;
+        case 3:
+            break;
         default:
             printf("Invalid choice.\n");
             return;
     }
+}
+
+void studentCount() {
+    int maleCount = 0;
+    int femaleCount = 0;
+    int totalCount = 0;
+
+    FILE* maleFile = fopen("maledetails.txt", "r");
+    if (maleFile != NULL) {
+        char line[256];
+        while (fgets(line, sizeof(line), maleFile)) {
+            maleCount++;
+        }
+        fclose(maleFile);
+    }
+
+    FILE* femaleFile = fopen("femaledetails.txt", "r");
+    if (femaleFile != NULL) {
+        char line[256];
+        while (fgets(line, sizeof(line), femaleFile)) {
+            femaleCount++;
+        }
+        fclose(femaleFile);
+    }
+
+    totalCount = maleCount + femaleCount;
+    printf("\nCount result\n");
+    printf("-----------------------------------------\n");
+    printf("Number of registered male students: %d\n", maleCount);
+    printf("Number of registered female students: %d\n", femaleCount);
+    printf("Total number of registered students: %d\n", totalCount);
+    printf("-----------------------------------------\n");
 }

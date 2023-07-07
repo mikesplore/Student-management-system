@@ -27,7 +27,8 @@ int main() {
             printf("3. Delete student record\n");
             printf("4. View student details\n");
             printf("5. Edit student details\n");
-            printf("6. Back to main menu\n");
+            printf("6. Check student count\n");
+            printf("7. Back to main menu\n");
             printf("Enter an option: ");
             scanf("%d",&option);
             switch(option){
@@ -42,13 +43,13 @@ int main() {
                 switch (option) {
                     case 1:
                         printf("---------------------------------------------\n");
-                        maledetails();
+                        registerStudentDetails("maledetails.txt");
                         printf("---------------------------------------------\n");
                         break;
 
                     case 2:
                         printf("---------------------------------------------\n");
-                        femaledetails();
+                        registerStudentDetails("femaledetails.txt");
                         printf("---------------------------------------------\n");
                         break;
 
@@ -61,37 +62,44 @@ int main() {
                 break;
             
             case 2:
+            printf("\nSEARCH STUDENT\n");
                 searchstudentdetails(id);
                 break;
             
             case 3:
+            printf("\nDELETE STUDENT\n");
                 deleteStudentRecord(id);
                 break;
 
             case 4:
                 printf("\nVIEW STUDENT REGISTRATION\n");
-                printf("1. Male student registration details\n");
-                printf("2. Female student registration details\n");
-                printf("3. Back to main menu\n");
+                printf("1. View male details\n");
+                printf("2. View female details\n");
+                printf("3. View all details\n");
+                printf("4. Back to main menu\n");
                 printf("Enter an option: ");
                 scanf("%d", &option);
 
                 switch (option) {
                     case 1:
                         printf("\nMale registration details\n");
-                        printf("---------------------------------------------\n");
+                        printf("--------------------------------------------------\n");
                         viewmaledetails();
-                        printf("---------------------------------------------\n");
+                        printf("--------------------------------------------------\n");
                         break;
 
                     case 2:
-                        printf("\nFemale registration details\n");
-                        printf("---------------------------------------------\n");
+                        printf("--------------------------------------------------\n");
                         viewfemaledetails();
-                        printf("---------------------------------------------\n");
+                        printf("--------------------------------------------------\n");
                         break;
 
                     case 3:
+                    printf("ALL DETAILS\n");
+                        printf("\n--------------------------------------------------\n");
+                        viewAlldetails();
+                        printf("--------------------------------------------------\n");
+                    case 4:
                         continue;
 
                     default:
@@ -100,10 +108,14 @@ int main() {
                 break;
 
             case 5:
+            printf("\nEDIT STUDENT RECORDS\n\n");
                 editStudentRecords();
                 break;
 
             case 6:
+            studentCount();
+
+            case 7:
             continue;
 
             default:
@@ -372,28 +384,42 @@ int main() {
 
         switch (option) {
             case 1:
+            printf("----------------------------------\n");
                 registerBook();
+            printf("----------------------------------\n");
                 break;
             case 2:
-                viewregisteredbooks();
+            printf("----------------------------------\n");
+                viewRegisteredBooks();
+            printf("----------------------------------\n");
                 break;
             case 3:
+            printf("----------------------------------\n");
                 borrowBook();
+            printf("----------------------------------\n");
                 break;
             case 4:
-                viewborrowedbooks();
+            printf("----------------------------------\n");
+                viewBorrowedBooks();
+            printf("----------------------------------\n");
                 break;
             case 5:
                 returnBook();
                 break;
             case 6:
-                searchbook(ibn);
+            printf("----------------------------------\n");
+                searchBook();
+            printf("----------------------------------\n");
                 break;
             case 7:
-                deletebookrecord(ibn);
+            printf("----------------------------------\n");
+                deleteBookRecord();
+            printf("----------------------------------\n");
                 break;
             case 8:
-                updatebookrecords();
+            printf("----------------------------------\n");
+                updateBookRecords();
+            printf("----------------------------------\n");
                 break;
             case 9:
                 printf("Going back to main menu");

@@ -1,2 +1,30 @@
-5, Ann Ja, 2011, kenya, Umoja, 987
-6, Susan Waithera, 2004, kenyan, umoinner, 99013845
+101, John Smith, 1995, American, Main Street, 123456789
+102, Michael Johnson, 1988, Canadian, Maple Avenue, 987654321
+103, David Brown, 1999, British, Park Road, 555555555
+104, Matthew Wilson, 2002, Australian, Ocean Drive, 222222222
+105, Daniel Taylor, 1990, Irish, River Street, 999999999
+106, Christopher Martinez, 1993, Mexican, Mountain View, 666666666
+107, Ethan Lee, 1998, Korean, Seoul Street, 777777777
+108, Benjamin Clark, 1985, American, Elm Avenue, 111111111
+109, Alexander Green, 1997, Canadian, Pine Street, 444444444
+110, Andrew Wright, 1991, British, Lake Road, 888888888
+111, David Baker, 1994, Australian, Hillside Avenue, 333333333
+112, Joseph Anderson, 1996, Irish, Forest Lane, 555555555
+113, William Lewis, 2000, Mexican, Oak Street, 777777777
+114, Samuel Martin, 1987, Korean, Cherry Blossom Lane, 222222222
+115, Joshua Hall, 1992, American, Cedar Drive, 444444444
+116, Daniel Thompson, 1999, Canadian, Ivy Lane, 111111111
+117, James Walker, 1993, British, Willow Street, 666666666
+118, Christopher White, 1997, Australian, Maple Court, 888888888
+119, Benjamin Rodriguez, 1989, Irish, Rose Avenue, 999999999
+120, David Turner, 2001, Mexican, Vine Road, 555555555
+121, Michael Garcia, 1986, Korean, Elm Street, 777777777
+122, William Wright, 1995, American, Oak Drive, 333333333
+123, Joseph Davis, 1998, Canadian, Pine Lane, 111111111
+124, Benjamin Wilson, 1994, British, Birch Avenue, 222222222
+125, Samuel Martinez, 1996, Australian, Birch Street, 444444444
+126, Joseph Thompson, 1992, Irish, Elm Road, 666666666
+127, Daniel Turner, 1988, Mexican, Cedar Avenue, 777777777
+128, Benjamin Lewis, 2000, Korean, Ash Street, 111111111
+129, William Anderson, 1997, American, Oak Lane, 555555555
+130, Alexander Hall, 1993, Canadian, Birch Drive, 8888888885, Michael Odhiambo, 2020, kenyan, Umoja Innercore, 99078745

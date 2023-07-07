@@ -1,1 +1,4 @@
 1, Obote, allocated
+5, SC,, allocated
+6, Obote, available
+7, Obote, allocated

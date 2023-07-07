@@ -14,10 +14,11 @@ struct Student {
 int readNumberFromFile();
 void writeNumberToFile(int number);
 int generateIncreasingNumber();
-void maledetails();
-void femaledetails();
+void registerStudentDetails(const char* filename);
 void viewmaledetails();
 void viewfemaledetails();
+void viewAlldetails();
+void studentCount();
 void searchstudentdetails(int id);
 void deleteStudentRecord(int id);
 void editStudentRecords();

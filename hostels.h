@@ -14,6 +14,8 @@ void viewmalehostels();
 void viewfemalehostels();
 int checkAllocation(int regNo, int roomNo);
 void allocatemalehostel();
+void allocatemhostel();
+void allocatefhostel();
 void allocatefemalehostel();
 void allocatedmalestudents();
 void allocatedfemalestudents();
